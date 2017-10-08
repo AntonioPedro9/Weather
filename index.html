@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Weather</title>
+
+        <meta name="author" content="Antônio Pedro Rodrigues Santos"/>
+        <meta name="contact" content="antoniopedro.rs9@gmail.com"/>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no"/>
+        <meta name="description" content=""/>
+        <meta name="keywords" content=""/>
+
+        <!-- Status bar  -->
+        <meta name="theme-color" content="rgb(24, 255, 255)"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+
+        <!-- Icons  -->
+        <link rel="icon" href="icon.png"/>
+        <link rel="apple-touch-icon" href="icon.png"/>
+
+        <!-- Aperial Design -->
+        <link rel="stylesheet" href="https://antoniopedro9.github.io/aperial/aperial.css">
+
+        <!-- Scripts -->
+        <script src="p5.min.js"></script>
+
+        <style>
+            canvas {
+                display: none;
+            }
+            main {
+                min-height: calc(100vh - 78px);
+            }
+            input {
+                width: 134px;
+            }
+        </style>
+    </head>
+
+    <body class="theme_cyan">
+        <main>
+            <header>
+                <h1>Weather</h1>
+            </header>
+
+            <section>
+                <div class="ap_card">
+
+                    <input id="city" type="text" placeholder="Your city name..." autocomplete="off"/><br>
+
+                    <form class="left">
+                        <input id="c" type="radio" name="unit" checked="checked"/>Celsius<br>
+                        <input id="f" type="radio" name="unit"/>Fahrenheit<br>
+                        <input type="radio" name="unit"/>Kelvin<br>
+                    </form>
+
+                    <button id="button" onclick="request()">GET WEATHER</button>
+                </div>
+            </section>
+
+            <h2 id="output"></h2>
+        </main>
+
+        <footer>
+            <h5>AP Enterprises™</h5>
+            <h5>Data from <a href="https://openweathermap.org" target="blank">OpenWeatherMap</a></h5>
+        </footer>
+
+        <script>
+        	function setup() {}
+			function draw() {}
+
+			function request() {
+
+				var city = document.getElementById("city").value;
+
+				// Changing the unitis:
+				var c = document.getElementById("c");
+				var f = document.getElementById("f");
+
+				if (c.checked) {
+					var unit = "units=metric";
+					var simbol = "°C";
+				}
+				else if (f.checked) {
+					var unit = "units=imperial"
+					var simbol = "°F"
+				}
+				else {
+					var unit = "";
+					var simbol = "K";
+				}
+
+				var url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=b088de9f03517dcfd38b8afe60b62855&" + unit;
+
+				loadJSON(url, function(data) {
+
+					// Showing the data:
+					document.getElementById("output").innerHTML = data.name + ", " + Math.round(data.main.temp) + simbol + "<br/>" + data.weather[0].description;
+				});
+			}
+        </script>
+    </body>
+</html>
+
+<!--==============================
+    ==============================
+    ====                      ====
+    ====    [][][]  [][][]    ====
+    ====    []  []  []  []    ====
+    ====    [][][]  [][][]    ====
+    ====    []  []  []        ====
+    ====    []  []  []        ====
+    ====                      ====
+    ====      Copyright       ====
+    ==============================
+    ==============================-->
