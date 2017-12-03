@@ -27,46 +27,51 @@
         <script src="p5.min.js"></script>
 
         <style>
-            main {
-                min-height: calc(100vh - 78px);
-            }
             input {
                 width: 134px;
+            }
+            footer {
+                position: absolute;
+                right: 0px;
+                bottom: 0px;
+                left: 0px;
             }
         </style>
     </head>
 
-    <body class="theme_cyan">
-        <main>
-            <header>
-                <h1>Weather</h1>
-            </header>
+    <body class="theme-cyan">
+        <header>
+            <h1>Weather</h1>
+        </header>
 
-            <section>
-                <div class="ap_card">
+        <content>
+            <div class="card">
+                <form>
+                    <input id="city" type="text" placeholder="Your city name..." autocomplete="off"/>
+                    
+                    <ul>
+                        <li><input id="c" type="radio" name="unit" checked="checked"/>Celsius</li>
+                        <li><input id="f" type="radio" name="unit"/>Fahrenheit</li>
+                        <li><input type="radio" name="unit"/>Kelvin</li>
+                    </ul>
+                </form>
 
-                    <input id="city" type="text" placeholder="Your city name..." autocomplete="off"/><br>
-
-                    <form class="left">
-                        <input id="c" type="radio" name="unit" checked="checked"/>Celsius<br>
-                        <input id="f" type="radio" name="unit"/>Fahrenheit<br>
-                        <input type="radio" name="unit"/>Kelvin<br>
-                    </form>
-
-                    <button id="button" onclick="request()">GET WEATHER</button>
-                </div>
-            </section>
+                <button id="button" onclick="request()">GET WEATHER</button>
+            </div>
 
             <h2 id="output"></h2>
-        </main>
-
+        </content>
+        
         <footer>
             <h5>AP Enterprises™</h5>
             <h5>Data from <a href="https://openweathermap.org" target="blank">OpenWeatherMap</a></h5>
         </footer>
 
         <script>
-        	function setup() {}
+        	function setup() {
+                noCanvas();
+            }
+
 			function draw() {}
 
 			function request() {
