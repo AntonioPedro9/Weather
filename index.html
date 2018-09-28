@@ -12,7 +12,7 @@
         <meta name="keywords" content=""/>
 
         <!-- Status bar  -->
-        <meta name="theme-color" content="rgb(255, 235, 59)"/>
+        <meta name="theme-color" content="rgb(24, 255, 525)"/>
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
 
@@ -44,10 +44,10 @@
         <content>
             <div class="card">
                 <form>
-                    <input id="city" type="text" placeholder="Your city name..." autocomplete="off"/>
+                    <input id="city" type="text" placeholder="Your city name..." autocomplete="off" required />
                     
                     <ul>
-                        <li><input id="c" type="radio" name="unit" checked="checked"/>Celsius</li>
+                        <li><input id="c" type="radio" name="unit" checked/>Celsius</li>
                         <li><input id="f" type="radio" name="unit"/>Fahrenheit</li>
                         <li><input type="radio" name="unit"/>Kelvin</li>
                     </ul>
@@ -68,8 +68,6 @@
         	function setup() {
                 noCanvas();
             }
-
-			function draw() {}
 
 			function request() {
 
