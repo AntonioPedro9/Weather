@@ -66,38 +66,38 @@
 
         <script async>
         	function setup() {
-                noCanvas();
-            }
+                	noCanvas();
+            	}
 
-			function request() {
+		function request() {
 
-				var city = document.getElementById("city").value;
+			var city = document.getElementById("city").value;
 
-				// Changing the unitis:
-				var c = document.getElementById("c");
-				var f = document.getElementById("f");
+			// Changing the unitis:
+			var c = document.getElementById("c");
+			var f = document.getElementById("f");
 
-				if (c.checked) {
-					var unit = "units=metric";
-					var simbol = "°C";
-				}
-				else if (f.checked) {
-					var unit = "units=imperial"
-					var simbol = "°F"
-				}
-				else {
-					var unit = "";
-					var simbol = "K";
-				}
-
-				var url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=b088de9f03517dcfd38b8afe60b62855&" + unit;
-
-				loadJSON(url, function(data) {
-
-					// Showing the data:
-					document.getElementById("output").innerHTML = data.name + ", " + Math.round(data.main.temp) + simbol + "<br/>" + data.weather[0].description;
-				});
+			if (c.checked) {
+				var unit = "units=metric";
+				var simbol = "°C";
 			}
+			else if (f.checked) {
+				var unit = "units=imperial"
+				var simbol = "°F"
+			}
+			else {
+				var unit = "";
+				var simbol = "K";
+			}
+
+			var url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=b088de9f03517dcfd38b8afe60b62855&" + unit;
+
+			loadJSON(url, function(data) {
+
+				// Showing the data:
+				document.getElementById("output").innerHTML = data.name + ", " + Math.round(data.main.temp) + simbol + "<br/>" + data.weather[0].description;
+			});
+		}
         </script>
     </body>
 </html>
