@@ -43,15 +43,13 @@
 
         <content>
             <div class="card">
-                <form>
-                    <input id="city" type="text" placeholder="Your city name..." autocomplete="off" required />
+                <input id="city" type="text" placeholder="Your city name..." autocomplete="off" required />
                     
-                    <ul>
-                        <li><input id="c" type="radio" name="unit" checked/>Celsius</li>
-                        <li><input id="f" type="radio" name="unit"/>Fahrenheit</li>
-                        <li><input type="radio" name="unit"/>Kelvin</li>
-                    </ul>
-                </form>
+                <ul>
+                    <li><input id="c" type="radio" name="unit" checked/>Celsius</li>
+                    <li><input id="f" type="radio" name="unit"/>Fahrenheit</li>
+                    <li><input type="radio" name="unit"/>Kelvin</li>
+                </ul>
 
                 <button id="button" onclick="request()">GET WEATHER</button>
             </div>
