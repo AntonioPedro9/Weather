@@ -43,21 +43,19 @@
 
         <main>
             <div class="card">
-                <input id="city" type="text" placeholder="Your city name..." autocomplete="off" required />
-                    
+                <input id="city" type="text" placeholder="Your city name..." autocomplete="off" required/>
                 <ul>
                     <li><input id="c" type="radio" name="unit" checked/>Celsius</li>
                     <li><input id="f" type="radio" name="unit"/>Fahrenheit</li>
                     <li><input type="radio" name="unit"/>Kelvin</li>
                 </ul>
-
                 <button id="button" onclick="request()">GET WEATHER</button>
             </div>
 
             <h2 id="output"></h2>
         </main>
         
-        <footer>
+        <footer class="theme-dark">
             <h5>AP Enterprises™</h5>
             <h5>Data from <a class="link" href="https://openweathermap.org" target="blank">OpenWeatherMap</a></h5>
         </footer>
