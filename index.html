@@ -27,6 +27,10 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script>
 
         <style>
+			body {
+				color: rgb(255, 255, 255);
+				background-color: rgb(16, 16, 16);
+			}
 			header h1 {
 				font-size: 3.0em;
 			}		
@@ -40,19 +44,19 @@
     </head>
 
     <body>
-        <headerclass="theme-yellow">
+        <header class="theme-dark">
             <h1>Weather</h1>
         </header>
 
         <main>
-            <div class="card">
+            <div class="card theme-dark">
                 <input id="city" type="text" placeholder="Your city name..." autocomplete="off" required/>
                 <ul>
                     <li><input id="c" type="radio" name="unit" checked/>Celsius</li>
                     <li><input id="f" type="radio" name="unit"/>Fahrenheit</li>
                     <li><input type="radio" name="unit"/>Kelvin</li>
                 </ul>
-                <button id="button" onclick="request()">GET WEATHER</button>
+                <button id="button" class="theme-cyan" onclick="request()">GET WEATHER</button>
             </div>
 
             <h2 id="output"></h2>
