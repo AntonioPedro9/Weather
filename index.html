@@ -30,18 +30,21 @@
 		    body {
                 width: 100vw;
                 height: 100vh;
+                flex: 1;
+                justify-content: center;
+                align-items: stretch;
+            
 			    color: rgb(255, 255, 255);
-			    background-color: rgb(16, 16, 16);
+			    background-color: rgb(32, 32, 32);
 		    }
 	        header h1 {
 				font-size: 3.0em;
 			}		
             .container {
-                height: calc(100vh - 174px);
+                height: calc(100vh - 176px);
                 margin: 8px;
-            }
-			input {
-                width: 134px;
+                display: flex;
+                justify-content: center;
             }
         </style>
     </head>
@@ -60,9 +63,8 @@
                     <li><input type="radio" name="unit"/>Kelvin</li>
                 </ul>
                 <button class="theme-cyan" onclick="request()">SUBMIT</button>
+                <h3 id="output"></h3>
             </div>
-
-            <h3 id="output"></h3>
         </div>
         
         <footer class="theme-dark">
@@ -80,7 +82,6 @@
 
                 let unit, simbol;
 
-				// Changing the unitis:
 				let c = document.getElementById("c");
 				let f = document.getElementById("f");
 
@@ -100,7 +101,7 @@
 				let url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=b088de9f03517dcfd38b8afe60b62855&" + unit;
 
 				loadJSON(url, (data) => {
-					// Showing the data:
+					// Show results:
 					document.getElementById("output").innerHTML = data.name + ", " + Math.round(data.main.temp) + simbol + "<br/>" + data.weather[0].description;
 				});
 			}
