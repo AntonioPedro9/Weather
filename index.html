@@ -21,21 +21,24 @@
         <link rel="apple-touch-icon" href="icon.png"/>
 
         <!-- Aperial Design -->
-        <link rel="stylesheet" href="https://antoniopedro9.github.io/aperial/aperial.min.css">
+        <link rel="stylesheet" href="https://antoniopedro9.github.io/aperial/aperial.css">
 
         <!-- p5.js -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script>
 
         <style>
-		body {
-			color: rgb(255, 255, 255);
-			background-color: rgb(16, 16, 16);
-		}
-	header h1 {
+		    body {
+                width: 100vw;
+                height: 100vh;
+			    color: rgb(255, 255, 255);
+			    background-color: rgb(16, 16, 16);
+		    }
+	        header h1 {
 				font-size: 3.0em;
 			}		
-            main {
-            	height: calc(100vh - 173px);
+            .container {
+                height: calc(100vh - 174px);
+                margin: 8px;
             }
 			input {
                 width: 134px;
@@ -45,22 +48,22 @@
 
     <body>
         <header class="theme-dark">
-            <h1 class="text-cyan">Weather</h1>
+            <h1>Weather</h1>
         </header>
 
-        <main>
+        <div class="container">
             <div class="card theme-dark">
-                <input id="city" type="text" placeholder="your city name..." autocomplete="off" required/>
+                <input id="city" type="text" placeholder="city name..." autocomplete="off" required/>
                 <ul>
                     <li><input id="c" type="radio" name="unit" checked/>Celsius</li>
                     <li><input id="f" type="radio" name="unit"/>Fahrenheit</li>
                     <li><input type="radio" name="unit"/>Kelvin</li>
                 </ul>
-                <button id="button" class="theme-cyan" onclick="request()">GET WEATHER</button>
+                <button class="theme-cyan" onclick="request()">SUBMIT</button>
             </div>
 
             <h3 id="output"></h3>
-        </main>
+        </div>
         
         <footer class="theme-dark">
             <h5>AP Enterprises™</h5>
@@ -73,28 +76,30 @@
             }
 
 			function request() {
-				var city = document.getElementById("city").value;
+				let city = document.getElementById("city").value;
+
+                let unit, simbol;
 
 				// Changing the unitis:
-				var c = document.getElementById("c");
-				var f = document.getElementById("f");
+				let c = document.getElementById("c");
+				let f = document.getElementById("f");
 
 				if (c.checked) {
-					var unit = "units=metric";
-					var simbol = "°C";
+					unit = "units=metric";
+					simbol = "°C";
 				}
 				else if (f.checked) {
-					var unit = "units=imperial"
-					var simbol = "°F"
+					unit = "units=imperial"
+					simbol = "°F"
 				}
 				else {
-					var unit = "";
-					var simbol = "K";
+					unit = "";
+					simbol = "K";
 				}
 
-				var url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=b088de9f03517dcfd38b8afe60b62855&" + unit;
+				let url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=b088de9f03517dcfd38b8afe60b62855&" + unit;
 
-				loadJSON(url, function(data) {
+				loadJSON(url, (data) => {
 					// Showing the data:
 					document.getElementById("output").innerHTML = data.name + ", " + Math.round(data.main.temp) + simbol + "<br/>" + data.weather[0].description;
 				});
