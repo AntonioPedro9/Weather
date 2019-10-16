@@ -41,10 +41,12 @@
 				font-size: 3.0em;
 			}		
             .container {
-                height: calc(100vh - 176px);
-                margin: 8px;
+                margin: 8px 8px calc(100vh - 461px) 8px;
                 display: flex;
                 justify-content: center;
+            }
+            .container .card {
+                height: 264px;
             }
         </style>
     </head>
@@ -76,15 +78,11 @@
         	function setup() {
             	noCanvas();
             }
-
 			function request() {
 				let city = document.getElementById("city").value;
-
                 let unit, simbol;
-
 				let c = document.getElementById("c");
 				let f = document.getElementById("f");
-
 				if (c.checked) {
 					unit = "units=metric";
 					simbol = "°C";
@@ -97,9 +95,7 @@
 					unit = "";
 					simbol = "K";
 				}
-
 				let url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=b088de9f03517dcfd38b8afe60b62855&" + unit;
-
 				loadJSON(url, (data) => {
 					// Show results:
 					document.getElementById("output").innerHTML = data.name + ", " + Math.round(data.main.temp) + simbol + "<br/>" + data.weather[0].description;
