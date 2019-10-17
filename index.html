@@ -30,9 +30,9 @@
 		    body {
                 width: 100vw;
                 height: 100vh;
+                min-height: 100vh;
                 flex: 1;
                 justify-content: center;
-                align-items: stretch;
             
 			    color: rgb(255, 255, 255);
 			    background-color: rgb(32, 32, 32);
@@ -41,10 +41,17 @@
 				font-size: 3.0em;
 			}		
             .container {
-                height: calc(100vh - 176px);
                 margin: 8px;
                 display: flex;
                 justify-content: center;
+            }
+            h5 {
+                position: absolute;
+                right: 0px;
+                bottom: 0px;
+                left: 0px;
+
+                text-align: center;
             }
         </style>
     </head>
@@ -67,24 +74,18 @@
             </div>
         </div>
         
-        <footer class="theme-dark">
-            <h5>AP Enterprises™</h5>
-            <h5>Data from <a class="link" href="https://openweathermap.org" target="blank">OpenWeatherMap</a></h5>
-        </footer>
+        <h5>Data from <a class="link" href="https://openweathermap.org" target="blank">OpenWeatherMap</a></h5>
 
         <script async>
         	function setup() {
             	noCanvas();
             }
-
 			function request() {
 				let city = document.getElementById("city").value;
-
                 let unit, simbol;
-
 				let c = document.getElementById("c");
 				let f = document.getElementById("f");
-
+				
 				if (c.checked) {
 					unit = "units=metric";
 					simbol = "°C";
@@ -97,9 +98,7 @@
 					unit = "";
 					simbol = "K";
 				}
-
 				let url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=b088de9f03517dcfd38b8afe60b62855&" + unit;
-
 				loadJSON(url, (data) => {
 					// Show results:
 					document.getElementById("output").innerHTML = data.name + ", " + Math.round(data.main.temp) + simbol + "<br/>" + data.weather[0].description;
