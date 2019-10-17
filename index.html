@@ -29,6 +29,7 @@
         <style>
 		    body {
                 width: 100vw;
+                height: 100vh;
                 min-height: 100vh;
                 flex: 1;
                 justify-content: center;
@@ -40,12 +41,17 @@
 				font-size: 3.0em;
 			}		
             .container {
-                margin: 8px 8px calc(100vh - 461px) 8px;
+                margin: 8px;
                 display: flex;
                 justify-content: center;
             }
-            .container .card {
-                height: 264px;
+            h5 {
+                position: absolute;
+                right: 0px;
+                bottom: 0px;
+                left: 0px;
+
+                text-align: center;
             }
         </style>
     </head>
@@ -68,10 +74,7 @@
             </div>
         </div>
         
-        <footer class="theme-dark">
-            <h5>AP Enterprises™</h5>
-            <h5>Data from <a class="link" href="https://openweathermap.org" target="blank">OpenWeatherMap</a></h5>
-        </footer>
+        <h5>Data from <a class="link" href="https://openweathermap.org" target="blank">OpenWeatherMap</a></h5>
 
         <script async>
         	function setup() {
