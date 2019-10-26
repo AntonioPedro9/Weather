@@ -31,8 +31,9 @@
                 width: 100vw;
                 height: 100vh;
                 min-height: 100vh;
-                flex: 1;
+                display: flex;
                 justify-content: center;
+                align-items: center;
             
 			    color: rgb(255, 255, 255);
 			    background-color: rgb(32, 32, 32);
@@ -45,25 +46,16 @@
                 display: flex;
                 justify-content: center;
             }
-            h5 {
-                position: absolute;
-                right: 0px;
-                bottom: 0px;
-                left: 0px;
-
-                text-align: center;
+            .card {
+                min-height: 262px;
             }
         </style>
     </head>
 
     <body>
-        <header class="theme-dark">
-            <h1>Weather</h1>
-        </header>
-
         <div class="container">
             <div class="card theme-dark">
-                <input id="city" type="text" placeholder="city name..." autocomplete="off" required/>
+                <input id="city" type="text" placeholder="City name..." autocomplete="off" required/>
                 <ul>
                     <li><input id="c" type="radio" name="unit" checked/>Celsius</li>
                     <li><input id="f" type="radio" name="unit"/>Fahrenheit</li>
@@ -73,8 +65,6 @@
                 <h3 id="output"></h3>
             </div>
         </div>
-        
-        <h5>Data from <a class="link" href="https://openweathermap.org" target="blank">OpenWeatherMap</a></h5>
 
         <script async>
         	function setup() {
