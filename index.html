@@ -61,7 +61,7 @@
                     <li><input id="f" type="radio" name="unit"/>Fahrenheit</li>
                     <li><input type="radio" name="unit"/>Kelvin</li>
                 </ul>
-                <button class="theme-cyan" onclick="request()">SUBMIT</button>
+                <button class="theme-cyan" onclick="request()">submit</button>
                 <h3 id="output"></h3>
             </div>
         </div>
@@ -72,6 +72,7 @@
             }
 			function request() {
 				let city = document.getElementById("city").value;
+                let output = document.getElementById("output");
                 let unit, simbol;
 				let c = document.getElementById("c");
 				let f = document.getElementById("f");
@@ -88,10 +89,12 @@
 					unit = "";
 					simbol = "K";
 				}
-				let url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=b088de9f03517dcfd38b8afe60b62855&" + unit;
+
+				let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=b088de9f03517dcfd38b8afe60b62855&${unit}`;
+                
 				loadJSON(url, (data) => {
 					// Show results:
-					document.getElementById("output").innerHTML = data.name + ", " + Math.round(data.main.temp) + simbol + "<br/>" + data.weather[0].description;
+					output.innerHTML = `${data.name} ${Math.round(data.main.temp)} ${simbol}</br>${data.weather[0].description}`;
 				});
 			}
         </script>
