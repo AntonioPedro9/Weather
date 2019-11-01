@@ -1,79 +1,79 @@
 <!doctype html>
 <html lang="en-us">
-    <head>
-        <title>Weather</title>
+	<head>
+		<title>Weather</title>
 
-        <meta name="author" content="Antônio Pedro Rodrigues Santos"/>
-        <meta name="contact" content="antoniopedro.rs9@gmail.com"/>
+		<meta name="author" content="Antônio Pedro Rodrigues Santos"/>
+		<meta name="contact" content="antoniopedro.rs9@gmail.com"/>
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1"/>
-        <meta name="description" content=""/>
-        <meta name="keywords" content=""/>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1"/>
+		<meta name="description" content=""/>
+		<meta name="keywords" content=""/>
 
-        <!-- Status bar  -->
-        <meta name="theme-color" content="rgb(32, 32, 32)"/>
-        <meta name="apple-mobile-web-app-capable" content="yes"/>
-        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+		<!-- Status bar  -->
+		<meta name="theme-color" content="rgb(32, 32, 32)"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
 
-        <!-- Icons  -->
-        <link rel="icon" href="icon.png"/>
-        <link rel="apple-touch-icon" href="icon.png"/>
+		<!-- Icons  -->
+		<link rel="icon" href="icon.png"/>
+		<link rel="apple-touch-icon" href="icon.png"/>
 
-        <!-- Aperial Design -->
-        <link rel="stylesheet" href="https://antoniopedro9.github.io/aperial/aperial.css">
+		<!-- Aperial Design -->
+		<link rel="stylesheet" href="https://antoniopedro9.github.io/aperial/aperial.css">
 
-        <!-- p5.js -->
-        <script async src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script>
+		<!-- p5.js -->
+		<script async src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script>
 
-        <style>
-		    body {
-                width: 100vw;
-                height: 100vh;
-                min-height: 100vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            
-			    color: rgb(255, 255, 255);
-			    background-color: rgb(32, 32, 32);
-		    }
-	        header h1 {
+		<style>
+			body {
+				width: 100vw;
+				height: 100vh;
+				min-height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			
+				color: rgb(255, 255, 255);
+				background-color: rgb(32, 32, 32);
+			}
+			header h1 {
 				font-size: 3.0em;
 			}		
-            .container {
-                margin: 8px;
-                display: flex;
-                justify-content: center;
-            }
-            .card {
-                min-height: 262px;
-            }
-        </style>
-    </head>
+			.container {
+				margin: 8px;
+				display: flex;
+				justify-content: center;
+			}
+			.card {
+				min-height: 262px;
+			}
+		</style>
+	</head>
 
-    <body>
-        <div class="container">
-            <div class="card theme-dark">
-                <input id="city" type="text" placeholder="City name..." autocomplete="off" required/>
-                <ul>
-                    <li><input id="c" type="radio" name="unit" checked/>Celsius</li>
-                    <li><input id="f" type="radio" name="unit"/>Fahrenheit</li>
-                    <li><input type="radio" name="unit"/>Kelvin</li>
-                </ul>
-                <button class="theme-cyan" onclick="request()">submit</button>
-                <h3 id="output"></h3>
-            </div>
-        </div>
+	<body>
+		<div class="container">
+			<div class="card theme-dark">
+				<input id="city" type="text" placeholder="City name..." autocomplete="off" required/>
+				<ul>
+					<li><input id="c" type="radio" name="unit" checked/>Celsius</li>
+					<li><input id="f" type="radio" name="unit"/>Fahrenheit</li>
+					<li><input type="radio" name="unit"/>Kelvin</li>
+				</ul>
+				<button class="theme-cyan" onclick="request()">submit</button>
+				<h3 id="output"></h3>
+			</div>
+		</div>
 
-        <script async>
-        	function setup() {
-            	noCanvas();
-            }
+		<script async>
+			function setup() {
+				noCanvas();
+			}
 			function request() {
 				let city = document.getElementById("city").value;
-                let output = document.getElementById("output");
-                let unit, simbol;
+				let output = document.getElementById("output");
+				let unit, simbol;
 				let c = document.getElementById("c");
 				let f = document.getElementById("f");
 				
@@ -91,25 +91,25 @@
 				}
 
 				let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=b088de9f03517dcfd38b8afe60b62855&${unit}`;
-                
+				
 				loadJSON(url, (data) => {
 					// Show results:
 					output.innerHTML = `${data.name} ${Math.round(data.main.temp)} ${simbol}</br>${data.weather[0].description}`;
 				});
 			}
-        </script>
-    </body>
+		</script>
+	</body>
 </html>
 
 <!--==============================
-    ==============================
-    ====                      ====
-    ====    [][][]  [][][]    ====
-    ====    []  []  []  []    ====
-    ====    [][][]  [][][]    ====
-    ====    []  []  []        ====
-    ====    []  []  []        ====
-    ====                      ====
-    ====      Copyright       ====
-    ==============================
-    ==============================-->
+	==============================
+	====					  ====
+	====	[][][]  [][][]	  ====
+	====	[]  []  []  []	  ====
+	====	[][][]  [][][]	  ====
+	====	[]  []  []		  ====
+	====	[]  []  []		  ====
+	====					  ====
+	====	  Copyright	      ====
+	==============================
+	==============================-->
