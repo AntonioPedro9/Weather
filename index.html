@@ -43,33 +43,56 @@
 				display: flex;
 				justify-content: center;
 			}
+			canvas {
+                margin: 0px;
+                position: absolute;
+                z-index: -1;
+			}
+			h4 {
+				text-align: center;
+			}
+			p {
+				text-decoration: underline;
+			}
 		</style>
 	</head>
 
 	<body>
 		<div class="container">
 			<div class="card theme-dark">
+				<h4>Weather</h4>
 				<input id="city" type="text" placeholder="City name..." autocomplete="off" required/>
 				<ul>
-					<li><input id="c" type="radio" name="unit" checked/>Celsius</li>
-					<li><input id="f" type="radio" name="unit"/>Fahrenheit</li>
+					<li><input id="f" type="radio" name="unit" checked/>Fahrenheit</li>
+					<li><input id="c" type="radio" name="unit"/>Celsius</li>
 					<li><input type="radio" name="unit"/>Kelvin</li>
 				</ul>
 				<p id="output"></p>
-				<button class="theme-teal" onclick="request()">submit</button>
+				<button class="theme-deep-purple" onclick="request()">submit</button>
 			</div>
 		</div>
 
 		<script async>
+			let w = window.innerWidth;
+            let h = window.innerHeight;
+
 			function setup() {
-				noCanvas();
+				createCanvas(w, h);
+                background(32, 32, 32);
 			}
+
+			function draw() {
+                noStroke();
+                fill(random(32, 128));
+                ellipse(mouseX, mouseY, 32, 32);
+            }
+
 			function request() {
 				let city = document.getElementById("city").value;
 				let output = document.getElementById("output");
 				let unit, simbol;
-				let c = document.getElementById("c");
 				let f = document.getElementById("f");
+				let c = document.getElementById("c");
 				
 				if (c.checked) {
 					unit = "units=metric";
