@@ -44,9 +44,9 @@
 				justify-content: center;
 			}
 			canvas {
-                margin: 0px;
-                position: absolute;
-                z-index: -1;
+				margin: 0px;
+				position: absolute;
+				z-index: -1;
 			}
 			h4 {
 				text-align: center;
@@ -74,18 +74,18 @@
 
 		<script async>
 			let w = window.innerWidth;
-            let h = window.innerHeight;
+			let h = window.innerHeight;
 
 			function setup() {
 				createCanvas(w, h);
-                background(32, 32, 32);
+				background(32, 32, 32);
 			}
 
 			function draw() {
-                noStroke();
-                fill(random(32, 128));
-                ellipse(mouseX, mouseY, 32, 32);
-            }
+				noStroke();
+				fill(random(32, 128));
+				ellipse(mouseX, mouseY, 32, 32);
+			}
 
 			function request() {
 				let city = document.getElementById("city").value;
