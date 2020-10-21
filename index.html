@@ -1,109 +1,98 @@
-<!doctype html>
-<html lang="en-us">
-	<head>
-		<title>Weather</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1"/>
 
-		<meta name="author" content="Antônio Pedro Rodrigues Santos"/>
-		<meta name="contact" content="antoniopedro.rs9@gmail.com"/>
+	<!-- Icons  -->
+	<link rel="icon" href="icon.png"/>
+	<link rel="apple-touch-icon" href="icon.png"/>
 
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1"/>
-		<meta name="description" content="Simple weather app with OpenWeatherMap DB and p5.js"/>
-		<meta name="keywords" content="weather, climate"/>
+	<!-- Aperial Design -->
+	<link rel="stylesheet" href="https://antoniopedro9.github.io/aperial/aperial.css">
 
-		<!-- Status bar  -->
-		<meta name="theme-color" content="rgb(32, 32, 32)"/>
-		<meta name="apple-mobile-web-app-capable" content="yes"/>
-		<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<!-- p5.js -->
+	<script async src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script>
 
-		<!-- Icons  -->
-		<link rel="icon" href="icon.png"/>
-		<link rel="apple-touch-icon" href="icon.png"/>
+	<title>Weather</title>
 
-		<!-- Aperial Design -->
-		<link rel="stylesheet" href="https://antoniopedro9.github.io/aperial/aperial.css">
-
-		<!-- p5.js -->
-		<script async src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script>
-
-		<style>
-			body {
-				display: flex;
-				justify-content: center;
-				align-items: center;
+	<style>
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			
-				color: rgb(255, 255, 255);
-				background-color: transparent;
-			}	
-			canvas {
-				margin: 0px;
-				position: absolute;
-				z-index: -1;
-			}
-			h4 {
-				text-align: center;
-			}
-			p {
-				text-decoration: underline;
-			}
-		</style>
-	</head>
+			color: rgb(255, 255, 255);
+			background-color: transparent;
+		}	
+		canvas {
+			margin: 0px;
+			position: absolute;
+			z-index: -1;
+		}
+		h4 {
+			text-align: center;
+		}
+		p {
+			text-decoration: underline;
+		}
+	</style>
+</head>
+<body>
+	<div class="card theme-dark">
+		<h4>Weather</h4>
+		<input id="city" type="text" placeholder="City name..." autocomplete="off" required/>
+		<ul>
+			<li><input id="f" type="radio" name="unit" checked/>Fahrenheit</li>
+			<li><input id="c" type="radio" name="unit"/>Celsius</li>
+			<li><input type="radio" name="unit"/>Kelvin</li>
+		</ul>
+		<p id="output"></p>
+		<button class="theme-deep-purple" onclick="request()">Submit</button>
+	</div>
 
-	<body>
-		<div class="card theme-dark">
-			<h4>Weather</h4>
-			<input id="city" type="text" placeholder="City name..." autocomplete="off" required/>
-			<ul>
-				<li><input id="f" type="radio" name="unit" checked/>Fahrenheit</li>
-				<li><input id="c" type="radio" name="unit"/>Celsius</li>
-				<li><input type="radio" name="unit"/>Kelvin</li>
-			</ul>
-			<p id="output"></p>
-			<button class="theme-deep-purple" onclick="request()">Submit</button>
-		</div>
+	<script async>
+		let w = window.innerWidth;
+		let h = window.innerHeight;
 
-		<script async>
-			let w = window.innerWidth;
-			let h = window.innerHeight;
+		function setup() {
+			createCanvas(w, h);
+			background(32, 32, 32);
+		}
 
-			function setup() {
-				createCanvas(w, h);
-				background(32, 32, 32);
+		function draw() {
+			noStroke();
+			fill(random(32, 128));
+			ellipse(mouseX, mouseY, 32, 32);
+		}
+
+		function request() {
+			let city = document.getElementById("city").value;
+			let output = document.getElementById("output");
+			let unit, simbol;
+			let f = document.getElementById("f");
+			let c = document.getElementById("c");
+			
+			if (c.checked) {
+				unit = "units=metric";
+				simbol = "°C";
+			}
+			else if (f.checked) {
+				unit = "units=imperial"
+				simbol = "°F"
+			}
+			else {
+				unit = "";
+				simbol = "K";
 			}
 
-			function draw() {
-				noStroke();
-				fill(random(32, 128));
-				ellipse(mouseX, mouseY, 32, 32);
-			}
-
-			function request() {
-				let city = document.getElementById("city").value;
-				let output = document.getElementById("output");
-				let unit, simbol;
-				let f = document.getElementById("f");
-				let c = document.getElementById("c");
+			let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=b088de9f03517dcfd38b8afe60b62855&${unit}`;
 				
-				if (c.checked) {
-					unit = "units=metric";
-					simbol = "°C";
-				}
-				else if (f.checked) {
-					unit = "units=imperial"
-					simbol = "°F"
-				}
-				else {
-					unit = "";
-					simbol = "K";
-				}
-
-				let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=b088de9f03517dcfd38b8afe60b62855&${unit}`;
-				
-				loadJSON(url, (data) => {
-					// Show results:
-					output.innerHTML = `${data.name} ${Math.round(data.main.temp)} ${simbol}</br>${data.weather[0].description}`;
-				});
-			}
-		</script>
-	</body>
+			loadJSON(url, (data) => {
+				// Show results:
+				output.innerHTML = `${data.name} ${Math.round(data.main.temp)} ${simbol}</br>${data.weather[0].description}`;
+			});
+		}
+	</script>
+</body>
 </html>
