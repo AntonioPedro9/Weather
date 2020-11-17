@@ -22,14 +22,9 @@
 			justify-content: center;
 			align-items: center;
 			
-			color: rgb(255, 255, 255);
-			background-color: transparent;
+			color: #fff;
+			background-color: #222;
 		}	
-		canvas {
-			margin: 0px;
-			position: absolute;
-			z-index: -1;
-		}
 		h4 {
 			text-align: center;
 		}
@@ -43,8 +38,8 @@
 		<h4>Weather</h4>
 		<input id="city" type="text" placeholder="City name..." autocomplete="off" required/>
 		<ul>
-			<li><input id="f" type="radio" name="unit" checked/>Fahrenheit</li>
-			<li><input id="c" type="radio" name="unit"/>Celsius</li>
+			<li><input id="celsius" type="radio" name="unit" checked/>Celsius</li>
+			<li><input id="fahrenheit" type="radio" name="unit"/>Fahrenheit</li>
 			<li><input type="radio" name="unit"/>Kelvin</li>
 		</ul>
 		<p id="output"></p>
@@ -52,32 +47,21 @@
 	</div>
 
 	<script async>
-		let w = window.innerWidth;
-		let h = window.innerHeight;
-
 		function setup() {
-			createCanvas(w, h);
-			background(32, 32, 32);
-		}
-
-		function draw() {
-			noStroke();
-			fill(random(32, 128));
-			ellipse(mouseX, mouseY, 32, 32);
+			noCanvas();
 		}
 
 		function request() {
 			let city = document.getElementById("city").value;
-			let output = document.getElementById("output");
 			let unit, simbol;
-			let f = document.getElementById("f");
-			let c = document.getElementById("c");
+			let celsiusOption = document.getElementById("celsius");
+			let fahrenheitOption = document.getElementById("fahrenheit");
 			
-			if (c.checked) {
+			if (celsiusOption.checked) {
 				unit = "units=metric";
 				simbol = "°C";
 			}
-			else if (f.checked) {
+			else if (fahrenheitOption.checked) {
 				unit = "units=imperial"
 				simbol = "°F"
 			}
@@ -86,11 +70,11 @@
 				simbol = "K";
 			}
 
-			let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=b088de9f03517dcfd38b8afe60b62855&${unit}`;
+			const URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=b088de9f03517dcfd38b8afe60b62855&${unit}`;
 				
-			loadJSON(url, (data) => {
-				// Show results:
-				output.innerHTML = `${data.name} ${Math.round(data.main.temp)} ${simbol}</br>${data.weather[0].description}`;
+			loadJSON(URL, (data) => {
+				// Display the response:
+				document.getElementById("output").innerHTML = `${data.name} ${Math.round(data.main.temp)} ${simbol}</br>${data.weather[0].description}`;
 			});
 		}
 	</script>
