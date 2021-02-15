@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
@@ -19,7 +20,7 @@
 			align-items: center;
 			color: #fff;
 			background-color: #222;
-		}	
+		}
 		h4 {
 			text-align: center;
 		}
@@ -30,12 +31,12 @@
 	<div class="card theme-dark">
 		<h4>Weather</h4>
 
-		<input id="city" type="text" placeholder="City name..." autocomplete="off" required/>
+		<input id="city" type="text" placeholder="City name..." autocomplete="off" required />
 
 		<ul>
-			<li><input id="celsius" type="radio" name="unit" checked/>Celsius</li>
-			<li><input id="fahrenheit" type="radio" name="unit"/>Fahrenheit</li>
-			<li><input type="radio" name="unit"/>Kelvin</li>
+			<li><input id="celsius" type="radio" name="unit" checked />Celsius</li>
+			<li><input id="fahrenheit" type="radio" name="unit" />Fahrenheit</li>
+			<li><input type="radio" name="unit" />Kelvin</li>
 		</ul>
 
 		<p id="output"></p>
@@ -53,7 +54,7 @@
 			let unit, simbol;
 			let celsiusOption = document.getElementById("celsius");
 			let fahrenheitOption = document.getElementById("fahrenheit");
-			
+
 			if (celsiusOption.checked) {
 				unit = "units=metric";
 				simbol = "°C";
@@ -68,7 +69,7 @@
 			}
 
 			const URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=b088de9f03517dcfd38b8afe60b62855&${unit}`;
-				
+
 			loadJSON(URL, (data) => {
 				let cityName = data.name;
 				let cityTemperature = Math.round(data.main.temp);
@@ -79,4 +80,5 @@
 		}
 	</script>
 </body>
+
 </html>
