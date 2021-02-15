@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
-
-	<!-- Icons  -->
-	<link rel="icon" href="icon.png">
-	<link rel="apple-touch-icon" href="icon.png">
 
 	<!-- Aperial Design -->
 	<link rel="stylesheet" href="https://antoniopedro9.github.io/aperial/aperial.css">
@@ -21,32 +17,33 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			
 			color: #fff;
 			background-color: #222;
 		}	
 		h4 {
 			text-align: center;
 		}
-		p {
-			text-decoration: underline;
-		}
 	</style>
 </head>
+
 <body>
 	<div class="card theme-dark">
 		<h4>Weather</h4>
+
 		<input id="city" type="text" placeholder="City name..." autocomplete="off" required/>
+
 		<ul>
 			<li><input id="celsius" type="radio" name="unit" checked/>Celsius</li>
 			<li><input id="fahrenheit" type="radio" name="unit"/>Fahrenheit</li>
 			<li><input type="radio" name="unit"/>Kelvin</li>
 		</ul>
+
 		<p id="output"></p>
+
 		<button class="theme-deep-purple" onclick="request()">Submit</button>
 	</div>
 
-	<script async>
+	<script>
 		function setup() {
 			noCanvas();
 		}
@@ -73,8 +70,11 @@
 			const URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=b088de9f03517dcfd38b8afe60b62855&${unit}`;
 				
 			loadJSON(URL, (data) => {
-				// Display the response:
-				document.getElementById("output").innerHTML = `${data.name} ${Math.round(data.main.temp)} ${simbol}</br>${data.weather[0].description}`;
+				let cityName = data.name;
+				let cityTemperature = Math.round(data.main.temp);
+				let description = data.weather[0].description;
+
+				document.getElementById("output").innerHTML = `${cityName} ${cityTemperature}${simbol}<br/>${description}`;
 			});
 		}
 	</script>
